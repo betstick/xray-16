@@ -1,0 +1,2 @@
+goal is to ignore EVERYTHING in the xrRender and xrRender_R2 folders.
+this layer should be completely independent to all others.
