@@ -1,0 +1,242 @@
+project(xrRender_R4)
+
+set(SRC_FILES
+	"../../Include/xrRender/ConsoleRender.h"
+	"../../Include/xrRender/DebugRender.h"
+	"../../Include/xrRender/DebugShader.h"
+	"../../Include/xrRender/DrawUtils.h"
+	"../../Include/xrRender/EnvironmentRender.h"
+	"../../Include/xrRender/FactoryPtr.h"
+	"../../Include/xrRender/FontRender.h"
+	"../../Include/xrRender/Kinematics.h"
+	"../../Include/xrRender/KinematicsAnimated.h"
+	"../../Include/xrRender/LensFlareRender.h"
+	"../../Include/xrRender/ObjectSpaceRender.h"
+	"../../Include/xrRender/ParticleCustom.h"
+	"../../Include/xrRender/RainRender.h"
+	"../../Include/xrRender/RenderDetailModel.h"
+	"../../Include/xrRender/RenderFactory.h"
+	"../../Include/xrRender/RenderVisual.h"
+	"../../Include/xrRender/StatGraphRender.h"
+	"../../Include/xrRender/ThunderboltDescRender.h"
+	"../../Include/xrRender/ThunderboltRender.h"
+	"../../Include/xrRender/UIRender.h"
+	"../../Include/xrRender/UISequenceVideoItem.h"
+	"../../Include/xrRender/UIShader.h"
+	"../../Include/xrRender/WallMarkArray.h"
+	"../xrRenderDX10/3DFluid/dx103DFluidBlenders.h"
+	"../xrRenderDX10/3DFluid/dx103DFluidData.h"
+	"../xrRenderDX10/3DFluid/dx103DFluidEmitters.h"
+	"../xrRenderDX10/3DFluid/dx103DFluidGrid.h"
+	"../xrRenderDX10/3DFluid/dx103DFluidManager.h"
+	"../xrRenderDX10/3DFluid/dx103DFluidObstacles.h"
+	"../xrRenderDX10/3DFluid/dx103DFluidRenderer.h"
+	"../xrRenderDX10/3DFluid/dx103DFluidVolume.h"
+	"../xrRender/blenders/dx10RainBlender.h"
+	"../xrRenderDX10/dx10ConstantBuffer.h"
+	"../xrRenderDX10/dx10ConstantBuffer_impl.h"
+	"../xrRenderDX10/dx10HW.h"
+	"../xrRenderDX10/dx10R_Backend_Runtime.h"
+	"../xrRenderDX10/dx10r_constants_cache.h"
+	"../xrRenderDX10/dx10StateUtils.h"
+	"../xrRenderDX10/dx10TextureUtils.h"
+	"../xrRender/blenders/dx10MSAABlender.h"
+	"../xrRenderDX10/StateManager/dx10SamplerStateCache.h"
+	"../xrRenderDX10/StateManager/dx10ShaderResourceStateCache.h"
+	"../xrRenderDX10/StateManager/dx10State.h"
+	"../xrRenderDX10/StateManager/dx10StateCache.h"
+	"../xrRenderDX10/StateManager/dx10StateCacheImpl.h"
+	"../xrRenderDX10/StateManager/dx10StateManager.h"
+	"../xrRenderDX11/CommonTypes.h"
+	"../xrRender/Animation.h"
+	"../xrRender/Blender.h"
+	"../xrRender/Blender_CLSID.h"
+	"../xrRender/Blender_Recorder.h"
+	"../xrRender/blenders/Blender_BmmD.h"
+	"../xrRender/blenders/Blender_detail_still.h"
+	"../xrRender/blenders/Blender_Editor_Selection.h"
+	"../xrRender/blenders/Blender_Editor_Wire.h"
+	"../xrRender/blenders/Blender_Lm(EbB).h"
+	"../xrRender/blenders/Blender_Model_EbB.h"
+	"../xrRender/blenders/Blender_Particle.h"
+	"../xrRender/blenders/Blender_Screen_SET.h"
+	"../xrRender/blenders/Blender_tree.h"
+	"../xrRender/BufferUtils.h"
+	"../xrRender/ColorMapManager.h"
+	"../xrRender/D3DUtils.h"
+	"../xrRender/D3DXRenderBase.h"
+	"../xrRender/Debug/dxPixEventWrapper.h"
+	"../xrRender/DetailFormat.h"
+	"../xrRender/DetailManager.h"
+	"../xrRender/DetailModel.h"
+	"../xrRender/du_box.h"
+	"../xrRender/du_cone.h"
+	"../xrRender/du_cylinder.h"
+	"../xrRender/du_sphere.h"
+	"../xrRender/du_sphere_part.h"
+	"../xrRender/dxConsoleRender.h"
+	"../xrRender/dxDebugRender.h"
+	"../xrRender/dxEnvironmentRender.h"
+	"../xrRender/dxFontRender.h"
+	"../xrRender/dxLensFlareRender.h"
+	"../xrRender/dxObjectSpaceRender.h"
+	"../xrRender/dxParticleCustom.h"
+	"../xrRender/dxRainRender.h"
+	"../xrRender/dxRenderFactory.h"
+	"../xrRender/dxStatGraphRender.h"
+	"../xrRender/dxThunderboltDescRender.h"
+	"../xrRender/dxThunderboltRender.h"
+	"../xrRender/dxUIRender.h"
+	"../xrRender/dxUISequenceVideoItem.h"
+	"../xrRender/dxUIShader.h"
+	"../xrRender/dxWallMarkArray.h"
+	"../xrRender/ETextureParams.h"
+	"../xrRender/FBasicVisual.h"
+	"../xrRender/FHierrarhyVisual.h"
+	"../xrRender/FLOD.h"
+	"../xrRender/FProgressive.h"
+	"../xrRender/FSkinned.h"
+	"../xrRender/FSkinnedTypes.h"
+	"../xrRender/FTreeVisual.h"
+	"../xrRender/FVF.h"
+	"../xrRender/FVisual.h"
+	"../xrRender/HOM.h"
+	"../xrRender/HWCaps.h"
+	"../xrRender/IRenderDetailModel.h"
+	"../xrRender/KinematicsAddBoneTransform.hpp"
+	"../xrRender/light.h"
+	"../xrRender/LightTrack.h"
+	"../xrRender/Light_DB.h"
+	"../xrRender/Light_Package.h"
+	"../xrRender/ModelPool.h"
+	"../xrRender/NvTriStrip.h"
+	"../xrRender/NvTriStripObjects.h"
+	"../xrRender/occRasterizer.h"
+	"../xrRender/ParticleEffect.h"
+	"../xrRender/ParticleEffectDef.h"
+	"../xrRender/ParticleGroup.h"
+	"../xrRender/PSLibrary.h"
+	"../xrRender/QueryHelper.h"
+	"../xrRender/ResourceManager.h"
+	"../xrRender/R_Backend.h"
+	"../xrRender/R_Backend_hemi.h"
+	"../xrRender/R_Backend_Runtime.h"
+	"../xrRender/R_Backend_tree.h"
+	"../xrRender/R_Backend_xform.h"
+	"../xrRender/r_constants.h"
+	"../xrRender/r_constants_cache.h"
+	"../xrRender/R_DStreams.h"
+	"../xrRender/r_sun_cascades.h"
+	"../xrRender/r__dsgraph_structure.h"
+	"../xrRender/r__dsgraph_types.h"
+	"../xrRender/r__occlusion.h"
+	"../xrRender/r__pixel_calculator.h"
+	"../xrRender/r__sector.h"
+	"../xrRender/r__sync_point.h"
+	"../xrRender/Shader.h"
+	"../xrRender/ShaderResourceTraits.h"
+	"../xrRender/SH_Atomic.h"
+	"../xrRender/SH_Constant.h"
+	"../xrRender/SH_Matrix.h"
+	"../xrRender/SH_RT.h"
+	"../xrRender/SH_Texture.h"
+	"../xrRender/SkeletonAnimated.h"
+	"../xrRender/SkeletonCustom.h"
+	"../xrRender/SkeletonX.h"
+	"../xrRender/stats_manager.h"
+	"../xrRender/TextureDescrManager.h"
+	"../xrRender/tss.h"
+	"../xrRender/tss_def.h"
+	"../xrRender/blenders/uber_deffer.h"
+	"../xrRender/Utils/dxHashHelper.h"
+	"../xrRender/VertexCache.h"
+	"../xrRender/WallmarksEngine.h"
+	"../xrRender/xrRender_console.h"
+	"../xrRender/xrStripify.h"
+	"../xrRender/xr_effgamma.h"
+	"../xrRender/blenders/blender_bloom_build.h"
+	"../xrRender/blenders/blender_combine.h"
+	"../xrRender/blenders/blender_deffer_aref.h"
+	"../xrRender/blenders/blender_deffer_flat.h"
+	"../xrRender/blenders/blender_deffer_model.h"
+	"../xrRender/blenders/blender_light_direct.h"
+	"../xrRender/blenders/blender_light_mask.h"
+	"../xrRender/blenders/blender_light_occq.h"
+	"../xrRender/blenders/blender_light_point.h"
+	"../xrRender/blenders/blender_light_reflected.h"
+	"../xrRender/blenders/blender_light_spot.h"
+	"../xrRender/blenders/blender_luminance.h"
+	"../xrRender/blenders/blender_ssao.h"
+	"../xrRender_R2/r2_rendertarget_wallmarks.h"
+	"../xrRender_R2/r2_R_sun_support.h"
+	"../xrRender_R2/r2_types.h"
+	"../xrRender_R2/SMAP_Allocator.h"
+	"ComputeShader.h"
+	"CSCompiler.h"
+	"../xrRender/blenders/dx11HDAOCSBlender.h"
+	"../xrRender/blenders/dx11MinMaxSMBlender.h"
+	"../xrRender/light_gi.h"
+	"../xrRender/Light_Render_Direct.h"
+	"../xrRender/light_smapvis.h"
+	"r4.h"
+	"r4_rendertarget.h"
+	"R_Backend_LOD.h"
+	"stdafx.h"
+)
+
+group_sources(SRC_FILES)
+
+add_library(${PROJECT_NAME} SHARED ${SRC_FILES})
+
+target_include_directories(${PROJECT_NAME}
+    PRIVATE
+    ${CMAKE_CURRENT_SOURCE_DIR}
+    ${CMAKE_SOURCE_DIR}/src
+    ${CMAKE_SOURCE_DIR}/src/Layers/xrRender
+    ${CMAKE_SOURCE_DIR}/src/Include/xrRender
+    ${CMAKE_SOURCE_DIR}/src/Layers/xrRender_R2
+    ${CMAKE_SOURCE_DIR}/Externals/luabind
+    ${CMAKE_SOURCE_DIR}/Externals/gli
+    ${CMAKE_SOURCE_DIR}/Externals/gli/external/glm
+	${CMAKE_SOURCE_DIR}/Externals/dxvk-native/include/native
+	${CMAKE_SOURCE_DIR}/Externals/dxvk-native/include/native/directx
+	${CMAKE_SOURCE_DIR}/Externals/dxvk-native/include/native/windows
+	${CMAKE_SOURCE_DIR}/Externals/dxvk-native/include/native/wsi
+    ${SDL_INCLUDE_DIRS}
+    ${FREEIMAGE_INCLUDE_PATH}
+    ${FREEIMAGEPLUS_INCLUDE_PATH}
+)
+
+target_link_libraries(${PROJECT_NAME}
+    PRIVATE
+    xrCore
+    xrCDB
+    xrEngine
+    xrParticles
+    xrScriptEngine
+    xrAPI
+    GL
+    GLEW
+    xrLuabind
+)
+
+target_compile_definitions(${PROJECT_NAME}
+    PRIVATE
+    -DXRRENDER_GL_EXPORTS
+    -DUSE_OGL
+    -DNO_XR_VDECLARATOR
+)
+
+set_target_properties(${PROJECT_NAME} PROPERTIES
+    PREFIX ""
+)
+
+target_precompile_headers(${PROJECT_NAME}
+    PRIVATE
+    "stdafx.h"
+)
+
+install(TARGETS ${PROJECT_NAME} LIBRARY
+    DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    PERMISSIONS OWNER_READ OWNER_WRITE GROUP_READ WORLD_READ
+)
