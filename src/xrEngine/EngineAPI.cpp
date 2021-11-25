@@ -27,7 +27,10 @@ constexpr pcstr RENDER_LIBRARIES[] =
     r2_library,
     "xrRender_R4",
 #endif
-    gl_library
+    //gl_library
+	r1_library,
+    r2_library,
+    "xrRender_R4",
 };
 
 static bool r2_available = false;

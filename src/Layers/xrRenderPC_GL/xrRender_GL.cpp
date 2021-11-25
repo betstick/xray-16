@@ -4,7 +4,7 @@
 #include "Layers/xrRender/dxDebugRender.h"
 #include "Layers/xrRender/D3DUtils.h"
 
-constexpr pcstr RENDERER_RGL_MODE = "renderer_rgl";
+constexpr pcstr RENDERER_RGL_MODE = "renderer_rkl";
 
 class RGLRendererModule final : public RendererModule
 {

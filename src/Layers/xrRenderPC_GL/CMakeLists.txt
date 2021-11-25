@@ -401,6 +401,10 @@ target_include_directories(${PROJECT_NAME}
     ${SDL_INCLUDE_DIRS}
     ${FREEIMAGE_INCLUDE_PATH}
     ${FREEIMAGEPLUS_INCLUDE_PATH}
+	${CMAKE_SOURCE_DIR}/Externals/dxvk-native/include/native
+	${CMAKE_SOURCE_DIR}/Externals/dxvk-native/include/native/directx
+	${CMAKE_SOURCE_DIR}/Externals/dxvk-native/include/native/windows
+	${CMAKE_SOURCE_DIR}/Externals/dxvk-native/include/native/wsi
 )
 
 target_link_libraries(${PROJECT_NAME}

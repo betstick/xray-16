@@ -1,6 +1,8 @@
-project(xrRender_R4)
+project(xrRender_R2)
 
 set(SRC_FILES
+	"../../Include/xrRender/animation_blend.h"
+	"../../Include/xrRender/animation_motion.h"
 	"../../Include/xrRender/ConsoleRender.h"
 	"../../Include/xrRender/DebugRender.h"
 	"../../Include/xrRender/DebugShader.h"
@@ -24,31 +26,12 @@ set(SRC_FILES
 	"../../Include/xrRender/UISequenceVideoItem.h"
 	"../../Include/xrRender/UIShader.h"
 	"../../Include/xrRender/WallMarkArray.h"
-	"../xrRenderDX10/3DFluid/dx103DFluidBlenders.h"
-	"../xrRenderDX10/3DFluid/dx103DFluidData.h"
-	"../xrRenderDX10/3DFluid/dx103DFluidEmitters.h"
-	"../xrRenderDX10/3DFluid/dx103DFluidGrid.h"
-	"../xrRenderDX10/3DFluid/dx103DFluidManager.h"
-	"../xrRenderDX10/3DFluid/dx103DFluidObstacles.h"
-	"../xrRenderDX10/3DFluid/dx103DFluidRenderer.h"
-	"../xrRenderDX10/3DFluid/dx103DFluidVolume.h"
-	"../xrRender/blenders/dx10RainBlender.h"
-	"../xrRenderDX10/dx10ConstantBuffer.h"
-	"../xrRenderDX10/dx10ConstantBuffer_impl.h"
-	"../xrRenderDX10/dx10HW.h"
-	"../xrRenderDX10/dx10R_Backend_Runtime.h"
-	"../xrRenderDX10/dx10r_constants_cache.h"
-	"../xrRenderDX10/dx10StateUtils.h"
-	"../xrRenderDX10/dx10TextureUtils.h"
-	"../xrRender/blenders/dx10MSAABlender.h"
-	"../xrRenderDX10/StateManager/dx10SamplerStateCache.h"
-	"../xrRenderDX10/StateManager/dx10ShaderResourceStateCache.h"
-	"../xrRenderDX10/StateManager/dx10State.h"
-	"../xrRenderDX10/StateManager/dx10StateCache.h"
-	"../xrRenderDX10/StateManager/dx10StateCacheImpl.h"
-	"../xrRenderDX10/StateManager/dx10StateManager.h"
-	"../xrRenderDX11/CommonTypes.h"
+	"../xrRenderDX9/CommonTypes.h"
+	"../xrRenderDX9/dx9HW.h"
+	"../xrRenderDX9/dx9R_Backend_Runtime.h"
+	"../xrRenderDX9/dx9r_constants_cache.h"
 	"../xrRender/Animation.h"
+	"../xrRender/AnimationKeyCalculate.h"
 	"../xrRender/Blender.h"
 	"../xrRender/Blender_CLSID.h"
 	"../xrRender/Blender_Recorder.h"
@@ -103,6 +86,7 @@ set(SRC_FILES
 	"../xrRender/HOM.h"
 	"../xrRender/HWCaps.h"
 	"../xrRender/IRenderDetailModel.h"
+	"../xrRender/KinematicAnimatedDefs.h"
 	"../xrRender/KinematicsAddBoneTransform.hpp"
 	"../xrRender/light.h"
 	"../xrRender/LightTrack.h"
@@ -116,7 +100,6 @@ set(SRC_FILES
 	"../xrRender/ParticleEffectDef.h"
 	"../xrRender/ParticleGroup.h"
 	"../xrRender/PSLibrary.h"
-	"../xrRender/QueryHelper.h"
 	"../xrRender/ResourceManager.h"
 	"../xrRender/R_Backend.h"
 	"../xrRender/R_Backend_hemi.h"
@@ -148,9 +131,9 @@ set(SRC_FILES
 	"../xrRender/tss.h"
 	"../xrRender/tss_def.h"
 	"../xrRender/blenders/uber_deffer.h"
-	"../xrRender/Utils/dxHashHelper.h"
 	"../xrRender/VertexCache.h"
 	"../xrRender/WallmarksEngine.h"
+	#"../xrRender/xrD3DDefs.h"
 	"../xrRender/xrRender_console.h"
 	"../xrRender/xrStripify.h"
 	"../xrRender/xr_effgamma.h"
@@ -160,6 +143,7 @@ set(SRC_FILES
 	"../xrRender/blenders/blender_deffer_flat.h"
 	"../xrRender/blenders/blender_deffer_model.h"
 	"../xrRender/blenders/blender_light_direct.h"
+	"../xrRender/blenders/blender_light_direct_cascade.h"
 	"../xrRender/blenders/blender_light_mask.h"
 	"../xrRender/blenders/blender_light_occq.h"
 	"../xrRender/blenders/blender_light_point.h"
@@ -167,20 +151,15 @@ set(SRC_FILES
 	"../xrRender/blenders/blender_light_spot.h"
 	"../xrRender/blenders/blender_luminance.h"
 	"../xrRender/blenders/blender_ssao.h"
+	"../xrRender/light_gi.h"
+	"../xrRender/Light_Render_Direct.h"
+	"../xrRender/light_smapvis.h"
 	"../xrRender_R2/r2_rendertarget_wallmarks.h"
 	"../xrRender_R2/r2_R_sun_support.h"
 	"../xrRender_R2/r2_types.h"
 	"../xrRender_R2/SMAP_Allocator.h"
-	"ComputeShader.h"
-	"CSCompiler.h"
-	"../xrRender/blenders/dx11HDAOCSBlender.h"
-	"../xrRender/blenders/dx11MinMaxSMBlender.h"
-	"../xrRender/light_gi.h"
-	"../xrRender/Light_Render_Direct.h"
-	"../xrRender/light_smapvis.h"
-	"r4.h"
-	"r4_rendertarget.h"
-	"R_Backend_LOD.h"
+	"r2.h"
+	"r2_rendertarget.h"
 	"stdafx.h"
 )
 
@@ -224,8 +203,8 @@ target_link_libraries(${PROJECT_NAME}
 
 target_compile_definitions(${PROJECT_NAME}
     PRIVATE
-    -DXRRENDER_R4_EXPORTS
-    -DUSE_DX11
+    -DXRRENDER_R2_EXPORTS
+    -DUSE_DX9
     -DNO_XR_VDECLARATOR
 )
 

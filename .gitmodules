@@ -49,3 +49,6 @@
 [submodule "Externals/sse2neon"]
 	path = Externals/sse2neon
 	url = https://github.com/DLTcollab/sse2neon.git
+[submodule "Externals/dxvk-native"]
+	path = Externals/dxvk-native
+	url = https://github.com/Joshua-Ashton/dxvk-native

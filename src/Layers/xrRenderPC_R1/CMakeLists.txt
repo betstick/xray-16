@@ -3,7 +3,7 @@ project(xrRenderPC_R1)
 set(SRC_FILES
     "FStaticRender_Blenders.cpp"
     "FStaticRender.cpp"
-    "FStaticRender_DetectSector.cpp"
+    #"FStaticRender_DetectSector.cpp"
     "FStaticRender.h"
     "FStaticRender_Loader.cpp"
     "FStaticRender_RenderTarget.cpp"
@@ -33,6 +33,10 @@ target_include_directories(${PROJECT_NAME}
     ${CMAKE_SOURCE_DIR}/Externals/luabind
     ${CMAKE_SOURCE_DIR}/sdk/include
     ${SDL_INCLUDE_DIRS}
+	${CMAKE_SOURCE_DIR}/Externals/dxvk-native/include/native
+	${CMAKE_SOURCE_DIR}/Externals/dxvk-native/include/native/directx
+	${CMAKE_SOURCE_DIR}/Externals/dxvk-native/include/native/windows
+	${CMAKE_SOURCE_DIR}/Externals/dxvk-native/include/native/wsi
 )
 
 target_link_libraries(${PROJECT_NAME}
@@ -51,6 +55,7 @@ target_link_libraries(${PROJECT_NAME}
 target_compile_definitions(${PROJECT_NAME}
     PRIVATE
     -DXRRENDER_R1_EXPORTS
+	-DUSE_DX9
 )
 
 set_target_properties(${PROJECT_NAME} PROPERTIES
